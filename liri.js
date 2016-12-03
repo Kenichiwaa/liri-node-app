@@ -1,4 +1,5 @@
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 // =========================================================================================================
 // Twitter API
 if (process.argv[2] === 'my-tweets'){
@@ -12,7 +13,7 @@ if (process.argv[2] === 'my-tweets'){
         access_token_secret: 'tsn1aHhfoiVhafulcggWBr83k5gdWPsfDqvrMkBXQfPxY'
       });
 
-      var screenName = 'elonmusk';
+      var screenName = 'CristianRocas';
       var params = {screen_name: screenName};
 
       client.get('statuses/user_timeline', params, function(error, tweets, response) {
@@ -35,9 +36,9 @@ if (process.argv[2] === 'my-tweets'){
 else if (process.argv[2] === 'spotify-this-song'){
 
     var spotify = require('spotify');
-    var trackSearch = 'hotel+california';
+    var track = 'hotel+california';
 
-    spotify.search({ type: 'track', query: trackSearch }, function(err, data) {
+    spotify.search({ type: 'track', query: track }, function(err, data) {
         if ( err ) {
             console.log('Error occurred: ' + err);
             return;
@@ -58,6 +59,22 @@ else if (process.argv[2] === 'spotify-this-song'){
 // =========================================================================================================
 else if(process.argv[2] === 'movie-this'){
 // IMDB API
+    var movie = "king+kong";
+		var queryURL = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&r=json";
+
+    // $.ajax({url: queryURL, method: 'GET'}).done(function(response) {
+    //      console.log(response);
+    // });
+    
+    var request = require('request');
+    request(queryURL, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        console.log(body) // Show the HTML for the Google homepage.
+      }
+    })
+
+
+
 
 }
 // =========================================================================================================
