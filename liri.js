@@ -9,7 +9,7 @@
 // Functions
 
 // IMDB API  Function
-function searchMovie(movie){
+function searchIMDB(movie){
     var request = require('request');
 		var queryURL = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&r=json";
 
@@ -96,22 +96,23 @@ function searchTwitter (screenName){
 
 
 if (process.argv[2] === 'my-tweets'){
-
+    var twitterHandler = process.argv[3];
     searchTwitter('CristianRocas'); // Twitter Search
 
 }else if (process.argv[2] === 'spotify-this-song'){
-
+    var searchSong = process.argv[3];
     searchSpotify('hotel+california'); // Spotify Search
 
-}else if( process.argv[2] === 'movie-this'){    //////////////////////////  || process.argv[2] === a string
-                                 ///////////// if it's not, output movie 'Mr. Nobody.
-    searchMovie('king+kong');
-}
-// ============================================================
-else {
+}else if( process.argv[2] === 'movie-this'){
+    var searchMovie = process.argv[3];
+    searchIMDB('king+kong'); // Moive Search
+
+}else if( process.argv[2] === 'movie-this' && process.argv[3] === "" ){
+    searchIMDB('Mr.+Nobody');
+}else {
     console.log("");
     console.log("==================================");
-    console.log("Type out the path correctly dummy!");
+    console.log("Type out the correct path dummy!");
     console.log("==================================");
     console.log("");
 }
