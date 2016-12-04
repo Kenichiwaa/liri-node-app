@@ -1,11 +1,12 @@
 
 // =========================================================================================================
 // Functions
-
+var keys = require("./keys.js");
 // IMDB API  Function
 function searchIMDB(movie){
+
     var request = require('request');
-		var queryURL = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&r=json";
+		var queryURL = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&r=json&tomatoes=true";
 
     request(queryURL, function (error, response, body) {
       if ( error ) {
@@ -55,14 +56,12 @@ function searchSpotify(track){
 
 // Twitter API Function
 function searchTwitter (screenName){
+
       var Twitter = require('twitter');
-      var client = new Twitter({
-        consumer_key: 'Ue1cwvsstMzCzisJ3sp1mAeaU',
-        consumer_secret: 'ke2jaBhTKsYKYzKx0OhmwS6dVCXyx0tiUBOoxCqf3kvVRxP25z',
-        access_token_key: '804146715070607365-HFmp7iSaYdQUKT4zOZC34V5RCNAwc9r',
-        access_token_secret: 'tsn1aHhfoiVhafulcggWBr83k5gdWPsfDqvrMkBXQfPxY'
-      });
-      
+      var tKeys = keys.twitterKeys; //twitter keys
+      console.log(tKeys);
+      var client = new Twitter(tKeys);
+
       var params = {screen_name: screenName};
 
       client.get('statuses/user_timeline', params, function(error, tweets, response) {
@@ -87,7 +86,8 @@ function searchTwitter (screenName){
 
 if (process.argv[2] === 'my-tweets'){
     var twitterHandler = process.argv[3];
-    searchTwitter('elon+musk'); // Twitter Search
+    screenName = 'elonmusk';
+    searchTwitter(screenName); // Twitter Search
 
 }else if (process.argv[2] === 'spotify-this-song'){
     var searchSong = process.argv[3];
