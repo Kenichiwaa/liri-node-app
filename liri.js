@@ -59,7 +59,6 @@ function searchTwitter (screenName){
 
       var Twitter = require('twitter');
       var tKeys = keys.twitterKeys; //twitter keys
-      console.log(tKeys);
       var client = new Twitter(tKeys);
 
       var params = {screen_name: screenName};
