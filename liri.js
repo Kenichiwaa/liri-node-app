@@ -1,10 +1,4 @@
 
-// <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-
-
-
-// =========================================================================================================
 // =========================================================================================================
 // Functions
 
@@ -33,7 +27,7 @@ function searchIMDB(movie){
           console.log("");
       }
     }); // END request(queryURL, function (error, response, body)
-}; // END function movieSearch()
+} // END function movieSearch()
 
 
 // Spotify API Function
@@ -56,7 +50,7 @@ function searchSpotify(track){
         console.log("=============================================================");
         console.log("");
     }); // END spotify.search
-}; // END function searchSpotify(track)
+} // END function searchSpotify(track)
 
 
 // Twitter API Function
@@ -68,7 +62,7 @@ function searchTwitter (screenName){
         access_token_key: '804146715070607365-HFmp7iSaYdQUKT4zOZC34V5RCNAwc9r',
         access_token_secret: 'tsn1aHhfoiVhafulcggWBr83k5gdWPsfDqvrMkBXQfPxY'
       });
-
+      
       var params = {screen_name: screenName};
 
       client.get('statuses/user_timeline', params, function(error, tweets, response) {
@@ -83,36 +77,33 @@ function searchTwitter (screenName){
               console.log(tweets[i].text);
               console.log("=============================================================");
               console.log("");
-            };
+            }
 
       }); // END client.get
-}; // END function searchTwitter (screenName)
-
-
+} // END function searchTwitter (screenName)
 
 // =========================================================================================================
-// =========================================================================================================
-
-
+// Main Process
 
 if (process.argv[2] === 'my-tweets'){
     var twitterHandler = process.argv[3];
-    searchTwitter('CristianRocas'); // Twitter Search
+    searchTwitter('elon+musk'); // Twitter Search
 
 }else if (process.argv[2] === 'spotify-this-song'){
     var searchSong = process.argv[3];
-    searchSpotify('hotel+california'); // Spotify Search
+    searchSpotify(searchSong); // Spotify Search
+
+}else if(process.argv[2] === 'spotify-this-song' && process.argv[3] === ""){
+    searchSpotify("the+sign"); // Spotify Empty Search
 
 }else if( process.argv[2] === 'movie-this'){
     var searchMovie = process.argv[3];
-    searchIMDB('king+kong'); // Moive Search
+    searchIMDB(searchMovie); // Moive Search
 
 }else if( process.argv[2] === 'movie-this' && process.argv[3] === "" ){
-    searchIMDB('Mr.+Nobody');
+    searchIMDB('mr+nobody');
 }else {
     console.log("");
-    console.log("==================================");
-    console.log("Type out the correct path dummy!");
-    console.log("==================================");
-    console.log("");
+    console.log("Type out a correct path!");
+    console.log("------------------------");
 }
