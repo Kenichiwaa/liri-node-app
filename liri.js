@@ -22,8 +22,8 @@ function searchIMDB(movie){
           console.log("Language of the movie is in: " + JSON.parse(body).Language);
           console.log("Plot of the movie is: " + JSON.parse(body).Plot);
           console.log("Actors in the movie are: " + JSON.parse(body).Actors);
-          // console.log("Rotten Tomatoes Rating is: " + JSON.parse(body));
-          // console.log("Rotten Tomatoes URL is: " + JSON.parse(body));
+          console.log("Rotten Tomatoes Rating is: " + JSON.parse(body).tomatoUserRating);
+          console.log("Rotten Tomatoes Rating is: " + JSON.parse(body).tomatoURL);
           console.log("=============================================================");
           console.log("");
       }
